@@ -14,6 +14,8 @@ $(() => {
         }
         console.log(params);
 
+        // common.commonAjax()
+
     });
 
 

@@ -1,5 +1,6 @@
 package com.daniel.rbac.main.controller;
 
+import com.daniel.rbac.user.vo.UserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
+
+
 
     Logger logger = LoggerFactory.getLogger(MainController.class);
 
@@ -18,5 +21,8 @@ public class MainController {
         modelAndView.setViewName("main");
         return modelAndView;
     }
+
+
+
 
 }
