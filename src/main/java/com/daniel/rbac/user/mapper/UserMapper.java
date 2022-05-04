@@ -12,7 +12,9 @@ import java.lang.annotation.*;
 @Repository
 @Mapper
 public interface UserMapper {
+    String getDbStatus();
+
     UserVO getUserId(String id);
 
-    String getDbStatus();
+    UserVO getLogIn(UserVO userVO);
 }

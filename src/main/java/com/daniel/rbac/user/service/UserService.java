@@ -8,4 +8,6 @@ public interface UserService {
     UserVO getUserId(String id) throws IOException;
 
     String getDbStatus() throws IOException;
+
+    UserVO getLogIn(UserVO userVO) throws IOException;
 }

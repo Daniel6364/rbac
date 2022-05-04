@@ -21,14 +21,20 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public UserVO getUserId(String id) throws IOException {
-        logger.info("getUserId");
-        logger.info("getUserId : " + id);
-        return userMapper.getUserId(id);
-    }
-
-    @Override
     public String getDbStatus() throws IOException {
         return userMapper.getDbStatus();
     }
+
+    @Override
+    public UserVO getLogIn(UserVO userVO) throws IOException {
+        return userMapper.getLogIn(userVO);
+    }
+
+    @Override
+    public UserVO getUserId(String id) throws IOException {
+        return userMapper.getUserId(id);
+    }
+
+
+
 }

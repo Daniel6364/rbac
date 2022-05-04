@@ -34,14 +34,17 @@ public class UserController {
         return new ResponseEntity<>(dbStatus, HttpStatus.OK);
     }
 
-    @GetMapping("/userId/{id}")
+    @GetMapping("/user_id/{id}")
     public ResponseEntity<UserVO> getUserId(@PathVariable String id) throws IOException {
-        logger.info("getUserId");
-        logger.info(id);
         UserVO userVO = userService.getUserId(id);
         return new ResponseEntity<>(userVO, HttpStatus.OK);
     }
 
 
+    @PostMapping("/log_in")
+    public ResponseEntity<UserVO> getLogIn(@RequestBody UserVO userVO) throws IOException {
+        UserVO result = userService.getLogIn(userVO);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 
 }
