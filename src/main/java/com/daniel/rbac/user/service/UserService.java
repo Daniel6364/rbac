@@ -7,5 +7,5 @@ import java.io.IOException;
 public interface UserService {
     UserVO getUserId(String id) throws IOException;
 
-    String getSysdate() throws IOException;
+    String getDbStatus() throws IOException;
 }

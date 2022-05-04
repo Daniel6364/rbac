@@ -2,6 +2,7 @@ package com.daniel.rbac.user.controller;
 
 import com.daniel.rbac.user.service.UserService;
 import com.daniel.rbac.user.vo.UserVO;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("user")
 public class UserController {
 
@@ -25,17 +27,11 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-    @PostMapping("/login")
-    public ResponseEntity<Void> userList(UserVO userDTO) throws IOException {
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PostMapping("/sysdate")
-    public ResponseEntity<String> getSysdate() throws IOException {
-        String currentDateTime = userService.getSysdate();
-        logger.debug(currentDateTime);
-        return new ResponseEntity<>(currentDateTime, HttpStatus.OK);
+    @GetMapping("/db_status")
+    public ResponseEntity<String> getDbStatus() throws IOException {
+        String dbStatus = userService.getDbStatus();
+        logger.debug(dbStatus);
+        return new ResponseEntity<>(dbStatus, HttpStatus.OK);
     }
 
     @GetMapping("/userId/{id}")

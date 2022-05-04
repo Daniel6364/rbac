@@ -9,7 +9,7 @@
         SELECT 'TEST' AS ID FROM DUAL
     </select>
 
-    <select id="getSysdate" resultType="String">
-        SELECT TO_CHAR(sysdate, 'YYYY-MM-DD HH24:MI:SS') FROM DUAL
+    <select id="getDbStatus" resultType="String">
+        SELECT 'ORACLE' as DB_STATUS FROM DUAL
     </select>
 </mapper>
