@@ -4,9 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.daniel.rbac.user.mapper.UserMapper">
-    <select id="getUserId" parameterType="com.daniel.rbac.user.vo.UserVO" resultType="com.daniel.rbac.user.vo.UserVO">
+    <select id="getUserId" parameterType="String" resultType="com.daniel.rbac.user.vo.UserVO">
+--         SELECT ID FROM USER_INFO WHERE ID = #{id}
+        SELECT 'TEST' AS ID FROM DUAL
+    </select>
 
-
-
+    <select id="getSysdate" resultType="String">
+        SELECT TO_CHAR(sysdate, 'YYYY-MM-DD HH24:MI:SS') FROM DUAL
     </select>
 </mapper>

@@ -28,20 +28,22 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<Void> userList(UserVO userDTO) throws IOException {
-
-
-
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping("/sysdate")
+    public ResponseEntity<String> getSysdate() throws IOException {
+        String currentDateTime = userService.getSysdate();
+        logger.debug(currentDateTime);
+        return new ResponseEntity<>(currentDateTime, HttpStatus.OK);
+    }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserVO> getUserId(@PathVariable String id) {
-
+    @GetMapping("/userId/{id}")
+    public ResponseEntity<UserVO> getUserId(@PathVariable String id) throws IOException {
+        logger.info("getUserId");
+        logger.info(id);
         UserVO userVO = userService.getUserId(id);
-
-        return new ResponseEntity<UserVO>(userVO, HttpStatus.OK);
+        return new ResponseEntity<>(userVO, HttpStatus.OK);
     }
 
 

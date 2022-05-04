@@ -5,6 +5,9 @@ import com.daniel.rbac.user.vo.UserVO;
 
 import java.io.IOException;
 
+
 public interface UserMapper {
-    UserVO getUserId(String id) throws IOException;
+    UserVO getUserId(String id);
+
+    String getSysdate();
 }
