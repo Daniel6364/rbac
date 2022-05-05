@@ -24,7 +24,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/status")
-    public ResponseEntity<Void> getUserApiStatus() throws IOException {
+    public ResponseEntity<Void> getUserApiStatus() {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

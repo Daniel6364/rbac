@@ -1,7 +1,4 @@
 $(() => {
-    console.log("start !!!");
-
-
     // enterKey event
     $("#userId").on('keydown', (key) => {
         if (key.keyCode === 13) {
@@ -21,7 +18,10 @@ $(() => {
 });
 
 let main = {
-    fn_returnHomeBtn: () => {
+
+    logInUserInfo : {}
+
+    , fn_returnHomeBtn: () => {
         $("#userId").val("");
         $("#password").val("");
     }
@@ -78,24 +78,52 @@ let main = {
         return result;
     }
 
-    ,fn_setLogInInfo: (data) => {
+    ,fn_setLogInInfo: (userData, logInData) => {
+
         console.log("==// fn_setLogInInfo");
-        console.log(data);
+        // console.log(userData);
+        console.log(logInData.length);
+
+        // let sysCdList = logInData[0].systemCd.split(",");
+        // let sysNmList = logInData[0].systemName.split(",");
+        // let sysGrpCdList = logInData[0].systemGrpCd.split(",");
+        // let sysGrpNmList = logInData[0].systemGrpName.split(",");
+
+        let userDataResult = {
+            id : userData.id,
+            userNm : userData.userName,
+            phoneNo : userData.phoneNo,
+            email : userData.email,
+            roleCd: logInData[0].roleCd,
+            roleName: logInData[0].roleName,
+        }
+        console.log(userDataResult);
+
+
+        let logInDataResult = {
+
+        }
+
+
+
+        // main.logInUserInfo
 
     }
 
     ,fn_logInPrecess: () => {
+
+        main.logInUserInfo = {};
+
         // getUserId
         let userInfo = main.fn_getUserId();
         let userInfoValid = main.fn_dataValidation("id", userInfo);
         if (userInfoValid) {
-
             // login
             let logInInfo = main.fn_getLogIn();
             let logInInfoValid = main.fn_dataValidation("logIn", logInInfo);
 
             if (logInInfoValid) {
-                main.fn_setLogInInfo(logInInfo);
+                main.fn_setLogInInfo(userInfo, logInInfo);
             }
         }
     }
