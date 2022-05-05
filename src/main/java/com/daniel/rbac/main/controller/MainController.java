@@ -16,7 +16,6 @@ public class MainController {
 
     @RequestMapping(value = "/")
     public ModelAndView getMainPage() throws Exception {
-        logger.info("==// getMainPage");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("main");
         return modelAndView;

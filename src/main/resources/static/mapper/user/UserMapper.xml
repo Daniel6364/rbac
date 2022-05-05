@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daniel.rbac.user.mapper.UserMapper">
+
+    <select id="getDbStatus" resultType="String">
+        SELECT
+            'ORACLE' as DB_STATUS
+            FROM
+                DUAL
+    </select>
+
+    <select id="getUserId" parameterType="String" resultType="com.daniel.rbac.user.vo.UserVO">
+        SELECT
+            ID
+          , USER_NAME
+          , PHONE_NO
+          , EMAIL
+            FROM
+                USER_INFO
+            WHERE
+                ID = #{id}
+    </select>
+
+    <select id="getLogIn" parameterType="com.daniel.rbac.user.vo.UserVO" resultType="com.daniel.rbac.user.vo.UserVO">
+        SELECT
+            T.ROLE_CD
+          , T.ROLE_NAME
+          , LISTAGG(T.SYSTEM_GRP_CD, ',') WITHIN GROUP (ORDER BY T.SYSTEM_GRP_CD) AS SYSTEM_GRP_CD
+          , LISTAGG(T.SYSTEM_GRP_NAME, ',') WITHIN GROUP (ORDER BY T.SYSTEM_GRP_NAME) AS SYSTEM_GRP_NAME
+          , T.SYSTEM_CD
+          , T.SYSTEM_NAME
+            FROM
+                (
+                SELECT
+                    A.ROLE_CD
+                  , (SELECT ROLE_NAME FROM ROLE_INFO WHERE ROLE_CD = A.ROLE_CD) AS ROLE_NAME
+                  , A.SYSTEM_GRP_CD
+                  , B.SYSTEM_GRP_NAME
+                  , LISTAGG(A.SYSTEM_CD, ',') WITHIN GROUP (ORDER BY A.SYSTEM_CD) AS SYSTEM_CD
+                  , LISTAGG(B.SYSTEM_NAME, ',') WITHIN GROUP (ORDER BY B.SYSTEM_NAME) AS SYSTEM_NAME
+                FROM
+                    ROLESYSTEM_INFO A
+                  , SYSTEM_INFO B
+                WHERE 1 = 1
+                    AND A.SYSTEM_CD = B.SYSTEM_CD
+                    AND A.SYSTEM_GRP_CD = B.SYSTEM_GRP_CD
+                    AND A.USE_FLAG = 'Y'
+                    AND A.ROLE_CD = (
+                        SELECT
+                            C1.ROLE_CD
+                        FROM
+                            ROLEUSER_INFO C1
+                        WHERE 1 = 1
+                            AND C1.USE_FLAG = 'Y'
+                            AND C1.USER_ID = (
+                            SELECT
+                                ID
+                            FROM
+                                USER_INFO
+                            WHERE
+                                ID = #{id}
+                                AND PASSWORD = #{password})
+                            )
+                            GROUP BY A.ROLE_CD, A.SYSTEM_GRP_CD, B.SYSTEM_GRP_NAME
+                ) T
+            GROUP BY T.ROLE_CD, T.ROLE_NAME, T.SYSTEM_CD, T.SYSTEM_NAME
+    </select>
+
+</mapper>

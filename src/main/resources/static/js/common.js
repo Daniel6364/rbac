@@ -34,7 +34,7 @@ let common = {
         //콜백함수
         request.done(callback);
 
-        request.fail(function (xhr, jqXHR, textStatus) {
+        /*request.fail(function (xhr, jqXHR, textStatus) {
             if (xhr.status === 401) {
                 alert("인증에 실패 했습니다. 로그인 페이지로 이동합니다.");
                 location.href = "/";
@@ -44,7 +44,7 @@ let common = {
             } else {
                 alert("권한이 없거나 실행중 오류가 발생하였습니다.");
             }
-        });
+        });*/
     },
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.lang.annotation.*;
+import java.util.List;
 
 @Repository
 @Mapper
@@ -16,5 +17,5 @@ public interface UserMapper {
 
     UserVO getUserId(String id);
 
-    UserVO getLogIn(UserVO userVO);
+    List<UserVO> getLogIn(UserVO userVO);
 }
