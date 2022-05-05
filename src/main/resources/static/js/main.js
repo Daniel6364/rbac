@@ -79,6 +79,8 @@ let main = {
     }
 
     ,fn_setLogInInfo: (data) => {
+        console.log("==// fn_setLogInInfo");
+        console.log(data);
 
     }
 
@@ -93,8 +95,6 @@ let main = {
             let logInInfoValid = main.fn_dataValidation("logIn", logInInfo);
 
             if (logInInfoValid) {
-                console.log("==// login 성공!!!");
-                console.log(logInInfo);
                 main.fn_setLogInInfo(logInInfo);
             }
         }
