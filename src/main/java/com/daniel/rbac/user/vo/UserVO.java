@@ -8,16 +8,15 @@ import java.util.List;
 public class UserVO {
 
     private String id;
-    private String user_name;
-    private String phone_no;
+    private String userName;
+    private String phoneNo;
     private String email;
     private String password;
-
-    private String role_cd;
-    private String role_name;
-    private String system_grp_cd;
-    private String system_grp_name;
-    private String system_cd;
-    private String system_name;
+    private String roleCd;
+    private String roleName;
+    private String systemGrpCd;
+    private String systemGrpName;
+    private String systemCd;
+    private String systemName;
 
 }
