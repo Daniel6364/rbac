@@ -5,6 +5,12 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/jquery/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
 </head>
 <body>
 
@@ -16,7 +22,7 @@
         <div class="left">
             <div class="top_link">
                 <!--<a href="#" onclick="main.fn_returnHomeBtn();"><img src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download" alt="">Return home</a></div>-->
-                <a href="#" onclick="main.fn_returnHomeBtn();"><img src="/image/left-arrow.png" alt="">Return home</a></div>
+                <a href="#" onclick="main.fn_reset();"><img src="/image/left-arrow.png" alt="">Reset</a></div>
             <div class="contact">
                 <div id="logIn">
                     <h3>LOG IN</h3>
@@ -32,6 +38,55 @@
                     <h2>RBAC</h2>
                     <h5>Copyright by Daniel</h5>
                 </div>
+
+                <div id="right-text-02">
+                    <div id="users-contain" class="ui-widget">
+                        <h1>Existing Users:</h1>
+                        <table id="users" class="ui-widget ui-widget-content">
+                            <thead>
+                            <tr class="ui-widget-header ">
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td id="user_name">John Doe</td>
+                                <td id="email">john.doe@example.com</td>
+                                <td id="phone_no">johndoe1</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <button id="button" class="ui-state-default ui-corner-all">권한보기</button>
+
+                        <div class="toggler">
+                            <div id="effect" class="ui-widget-content ui-corner-all">
+                                <h3 class="ui-widget-header ui-corner-all">권한목록</h3>
+
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>접근시스템</th>
+                                        <th>접근권한</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="toggle-context">
+                                    <tr>
+                                        <td>수정파일</td>
+                                        <td>등록,수정,조회</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
             </div>
             <div class="right-inductor">
 

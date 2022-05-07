@@ -1,4 +1,6 @@
 $(() => {
+    $("#right-text-02").hide();
+
     // enterKey event
     $("#userId").on('keydown', (key) => {
         if (key.keyCode === 13) {
@@ -15,15 +17,34 @@ $(() => {
     $(".submitLogIn").on('click', () => {
         main.fn_logInPrecess();
     });
+
+    $("#button").on("click", function () {
+        main.fn_displayAuthInfo();
+    });
+
 });
 
 let main = {
 
-    logInUserInfo : {}
+    logInUserInfo: {}
 
-    , fn_returnHomeBtn: () => {
+    , fn_reset: () => {
+
+        // id, password init
         $("#userId").val("");
         $("#password").val("");
+
+        $("#userId").attr("disabled", false);
+        $("#userId").css("background", "transparent");
+        $("#password").attr("disabled", false);
+        $("#password").css("background", "transparent");
+
+        $("#logIn h3").text("LOG IN");
+
+
+        // UI init
+        $("#right-text-01").show();
+        $("#right-text-02").hide();
     }
 
     , fn_dataValidation: (type, data) => {
@@ -32,18 +53,27 @@ let main = {
         switch (type) {
             case "id":
                 if (typeof data === 'undefined') {
-                    $("#right-text-01").show();
                     alert("해당 아이디는 찾을 수 없습니다.");
                     result = false;
-                } else {
-                    $("#right-text-01").hide();
                 }
                 break;
             case "logIn":
                 if (data.length > 0) {
                     $("#right-text-01").hide();
+                    $("#right-text-02").show();
+
+                    $("#userId").attr("disabled", true);
+                    $("#userId").css("background", "#e9e9e9");
+                    $("#password").attr("disabled", true);
+                    $("#password").css("background", "#e9e9e9");
+
+
+                    $("#logIn h3").text("SUCCESS!");
+
+
                 } else {
                     $("#right-text-01").show();
+                    $("#right-text-02").hide();
                     alert("비밀번호가 일치하지 않습니다.");
                     $("#password").val("");
                     $("#password").focus();
@@ -78,39 +108,38 @@ let main = {
         return result;
     }
 
-    ,fn_setLogInInfo: (userData, logInData) => {
-
-        console.log("==// fn_setLogInInfo");
-        // console.log(userData);
-        console.log(logInData.length);
-
-        // let sysCdList = logInData[0].systemCd.split(",");
-        // let sysNmList = logInData[0].systemName.split(",");
-        // let sysGrpCdList = logInData[0].systemGrpCd.split(",");
-        // let sysGrpNmList = logInData[0].systemGrpName.split(",");
+    , fn_setLogInInfo: (userData, logInData) => {
 
         let userDataResult = {
-            id : userData.id,
-            userNm : userData.userName,
+            id      : userData.id,
+            userNm  : userData.userName,
             phoneNo : userData.phoneNo,
-            email : userData.email,
-            roleCd: logInData[0].roleCd,
+            email   : userData.email,
+            roleCd  : logInData[0].roleCd,
             roleName: logInData[0].roleName,
         }
-        console.log(userDataResult);
 
-
-        let logInDataResult = {
-
+        // toggle box UI setting
+        let toggleContext;
+        for (let i = 0; i < logInData.length; i++) {
+            toggleContext += "<tr><td>";
+            toggleContext += logInData[i].systemGrpName;
+            toggleContext += "</td><td>";
+            toggleContext += logInData[i].systemName;
+            toggleContext += "</td></tr>";
         }
+        $("#toggle-context").html(toggleContext);
 
+        // UI setting
+        $("#users-contain h1").text(userDataResult.roleName);
+        $("#user_name").text(userDataResult.userNm);
+        $("#email").text(userDataResult.email);
+        $("#phone_no").text(userDataResult.phoneNo);
 
-
-        // main.logInUserInfo
 
     }
 
-    ,fn_logInPrecess: () => {
+    , fn_logInPrecess: () => {
 
         main.logInUserInfo = {};
 
@@ -126,6 +155,23 @@ let main = {
                 main.fn_setLogInInfo(userInfo, logInInfo);
             }
         }
+    }
+
+    , fn_displayAuthInfo: () => {
+        // let selectedEffect = $("#effectTypes").val();
+        let selectedEffect = "blind";
+
+        // Most effect types need no options passed by default
+        let options = {};
+        // some effects have required parameters
+        if (selectedEffect === "scale") {
+            options = {percent: 50};
+        } else if (selectedEffect === "size") {
+            options = {to: {width: 200, height: 60}};
+        }
+
+        // Run the effect
+        $("#effect").toggle(selectedEffect, options, 500);
     }
 
 }

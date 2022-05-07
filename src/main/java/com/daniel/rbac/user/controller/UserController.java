@@ -13,6 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * @Package : com.daniel.rbac.user.controller
+ * @Class : UserController
+ * @Description :
+ * @Date : 2022/05/07
+ * @Author : Daniel
+ * @Comment :
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("user")
@@ -35,6 +43,13 @@ public class UserController {
         return new ResponseEntity<>(dbStatus, HttpStatus.OK);
     }
 
+    /**
+     * @Method : getUserId
+     * @Description :   사용자 아이디 조회
+     * @Date : 2022/05/07
+     * @Author : Daniel
+     * @Comment :
+     */
     @GetMapping("/id/{id}")
     public ResponseEntity<UserVO> getUserId(@PathVariable String id) throws IOException {
         UserVO userVO = userService.getUserId(id);
@@ -42,6 +57,13 @@ public class UserController {
     }
 
 
+    /**
+     * @Method : getLogIn
+     * @Description :   로그인
+     * @Date : 2022/05/07
+     * @Author : Daniel
+     * @Comment :
+     */
     @PostMapping("/login")
     public ResponseEntity<List<UserVO>> getLogIn(@RequestBody UserVO userVO) throws IOException {
         List<UserVO> result = userService.getLogIn(userVO);
