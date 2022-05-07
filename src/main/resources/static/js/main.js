@@ -41,6 +41,7 @@ let main = {
 
         $("#logIn h3").text("LOG IN");
 
+        $("#effect").css("display", "none");
 
         // UI init
         $("#right-text-01").show();
@@ -54,6 +55,8 @@ let main = {
             case "id":
                 if (typeof data === 'undefined') {
                     alert("해당 아이디는 찾을 수 없습니다.");
+                    $("#password").val("");
+                    $("#userId").focus();
                     result = false;
                 }
                 break;
@@ -63,9 +66,9 @@ let main = {
                     $("#right-text-02").show();
 
                     $("#userId").attr("disabled", true);
-                    $("#userId").css("background", "#e9e9e9");
+                    $("#userId").css("background", "#b7b7b7");
                     $("#password").attr("disabled", true);
-                    $("#password").css("background", "#e9e9e9");
+                    $("#password").css("background", "#b7b7b7");
 
 
                     $("#logIn h3").text("SUCCESS!");
