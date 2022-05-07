@@ -15,6 +15,14 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
+/**
+ * @Package : com.daniel.rbac.config
+ * @Class : MybatisConfig
+ * @Description :   마이바티스 설정
+ * @Date : 2022/05/07
+ * @Author : Daniel
+ * @Comment :
+ */
 @Configuration
 public class MybatisConfig {
 

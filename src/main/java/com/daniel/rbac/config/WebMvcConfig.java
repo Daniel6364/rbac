@@ -6,6 +6,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * @Package : com.daniel.rbac.config
+ * @Class : WebMvcConfig
+ * @Description :   웹 설정
+ * @Date : 2022/05/07
+ * @Author : Daniel
+ * @Comment :
+ */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
