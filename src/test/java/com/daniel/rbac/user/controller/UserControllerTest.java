@@ -5,10 +5,11 @@ import com.daniel.rbac.user.vo.UserVO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,6 +49,25 @@ class UserControllerTest {
     }
 
     @Test
-    void getLogIn() {
+    @DisplayName("=====// getLogIn")
+    void getLogIn() throws IOException {
+
+        UserVO userVO = new UserVO();
+        userVO.setId("cuser");
+        userVO.setPassword("1234");
+
+        String roleName = "제한된 사용자";
+        String systemGrpCd = "edit_user_files";
+        String systemCd = "select";
+        String systemName = "조회";
+
+        List<UserVO> result = userService.getLogIn(userVO);
+        assertAll(
+                () -> assertEquals(roleName, result.get(0).getRoleName())
+                , () -> assertEquals(systemGrpCd, result.get(0).getSystemGrpCd())
+                , () -> assertEquals(systemCd, result.get(0).getSystemCd())
+                , () -> assertEquals(systemName, result.get(0).getSystemName())
+        );
+
     }
 }
