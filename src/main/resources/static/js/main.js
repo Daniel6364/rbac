@@ -10,12 +10,12 @@ $(() => {
     });
 
     $("#password").on('keydown', (key) => {
-        if (key.keyCode === 13) main.fn_logInPrecess();
+        if (key.keyCode === 13) main.fn_logInProcess();
     });
 
     // logIn button event
     $(".submitLogIn").on('click', () => {
-        main.fn_logInPrecess();
+        main.fn_logInProcess();
     });
 
     $("#button").on("click", function () {
@@ -142,7 +142,7 @@ let main = {
 
     }
 
-    , fn_logInPrecess: () => {
+    , fn_logInProcess: () => {
 
         main.logInUserInfo = {};
 
